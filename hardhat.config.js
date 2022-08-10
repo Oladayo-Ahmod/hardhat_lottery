@@ -6,8 +6,8 @@ require("solidity-coverage")
 require("hardhat-contract-sizer")
 require("dotenv").config()
 
-const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL
-const PRIVATE_KEY = process.env.PRIVATE_KEY
+const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL || 'https://someething'
+const PRIVATE_KEY = process.env.PRIVATE_KEY || '26479d2816d2979b0e14c3e05744df448e4d10946737d60f82181d2526efa8b8'
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY
 
