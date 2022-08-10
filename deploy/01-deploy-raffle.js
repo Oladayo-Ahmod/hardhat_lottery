@@ -12,11 +12,14 @@ module.exports = async function({getNamedAccounts,deployments}){
         VrfCoordinator2Address = VrfCoordinatorV2Mocks.address
     }
     else{
-        VrfCoordinator2Address  = networkConfig[chainId][vrfCordinator2]
+        VrfCoordinator2Address  = networkConfig[chainId]["vrfCordinator2"]
     }
+    const entranceFee = networkConfig[chainId]["entranceFee"]
+    
+    const args = [VrfCoordinator2Address,entranceFee]
     const raffle = await deploy("Raffle",{
         from : deployer,
-        args : [],
+        args : args,
         log : true,
         waitConfirmations : network.config.confirmations || 1
 
