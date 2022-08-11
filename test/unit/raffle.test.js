@@ -34,6 +34,9 @@ const {developmentChains, networkConfig} = require('../../helper-config')
             const playerFromContract = await Raffle.getPlayer(0)
             assert.equal(playerFromContract,deployer)
         })
+        it('it emits event on enter', async ()=>{
+            await expect(Raffle.enterRaffle({value : entranceFee})).to.be.emit(Raffle,' RaffleEnter')
+        })
     })
     
 
