@@ -43,5 +43,8 @@ module.exports = {
         player : {
             default : 1
         }
-    }
+    },
+    // mocha: {
+    //     timeout: 1000000, // 500 seconds max for running tests
+    // },
 };
