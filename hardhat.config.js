@@ -10,6 +10,7 @@ const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL || 'https://someething'
 const PRIVATE_KEY = process.env.PRIVATE_KEY || '26479d2816d2979b0e14c3e05744df448e4d10946737d60f82181d2526efa8b8'
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY
+const REPORT_GAS = process.env.REPORT_GAS || false
 
 module.exports = {
     defaultNetwork : "hardhat",
@@ -25,6 +26,21 @@ module.exports = {
             accounts : [PRIVATE_KEY]
 
         }
+    },
+    etherscan: {
+        // yarn hardhat verify --network <NETWORK> <CONTRACT_ADDRESS> <CONSTRUCTOR_PARAMETERS>
+        apiKey: {
+            rinkeby: ETHERSCAN_API_KEY,
+            // kovan: ETHERSCAN_API_KEY,
+            // polygon: POLYGONSCAN_API_KEY,
+        },
+    },
+    gasReporter: {
+        enabled: REPORT_GAS,
+        currency: "USD",
+        outputFile: "gas-report.txt",
+        noColors: true,
+        coinmarketcap: COINMARKETCAP_API_KEY,
     },
     solidity: {
         compilers: [
@@ -44,7 +60,7 @@ module.exports = {
             default : 1
         }
     },
-    // mocha: {
-    //     timeout: 1000000, // 500 seconds max for running tests
-    // },
+    mocha: {
+        timeout: 500000, // 500 seconds max for running tests
+    },
 };
